@@ -51,11 +51,3 @@ h1 {
     background-color: #222222;
 }
 
-.site-name {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    color: white; /* or any color of your choice */
-    /* Add more styling as needed */
-}
