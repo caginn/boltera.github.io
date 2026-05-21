@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Company — Boltera Medical Devices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Story / mission */
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  padding: 96px 0;
+}
+.story-grid h2 {
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.04;
+  margin-top: 14px;
+}
+.story-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0 0 22px;
+}
+.story-text p:first-child::first-letter {
+  font-family: 'Newsreader', serif;
+  font-size: 78px;
+  line-height: 0.8;
+  color: var(--red);
+  float: left;
+  padding: 6px 12px 0 0;
+  font-weight: 500;
+}
+
+/* Numbers band */
+.numbers-band {
+  background: var(--ink);
+  color: var(--white);
+  padding: 96px 0;
+}
+.numbers-band .head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 64px;
+}
+.numbers-band h2 {
+  color: var(--white);
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.06;
+}
+.numbers-band .head p {
+  align-self: end;
+  color: rgba(255,255,255,0.7);
+  font-size: 16.5px;
+  line-height: 1.6;
+  max-width: 460px;
+}
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.numbers-grid .nb {
+  background: var(--ink);
+  padding: 36px 32px;
+}
+.numbers-grid .n {
+  font-family: 'Newsreader', serif;
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+.numbers-grid .l {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+/* Timeline */
+.timeline {
+  padding: 110px 0;
+}
+.timeline-head {
+  margin-bottom: 64px;
+  max-width: 720px;
+}
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.timeline-list li {
+  display: grid;
+  grid-template-columns: 140px 1fr 1.4fr;
+  gap: 40px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.timeline-list .yr {
+  font-family: 'Newsreader', serif;
+  font-size: 28px;
+  color: var(--red);
+  letter-spacing: -0.02em;
+}
+.timeline-list .ti {
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.005em;
+}
+.timeline-list .de {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* Values */
+.values { background: var(--paper); padding: 110px 0; }
+.values-head { margin-bottom: 64px; max-width: 720px; }
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.value-card {
+  background: var(--white);
+  padding: 40px 32px;
+  border-top: 3px solid var(--red);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.value-card .vn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+}
+.value-card h3 {
+  font-family: 'Newsreader', serif;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+}
+.value-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* Facility */
+.facility { padding: 110px 0; }
+.facility-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.facility-vis {
+  position: relative;
+  aspect-ratio: 1.1/1;
+  background: var(--paper);
+  overflow: hidden;
+}
+.facility-vis iframe {
+  filter: grayscale(0.15);
+}
+.facility-vis::after {
+  content: none;
+}
+.facility-text h2 {
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.06;
+  margin-top: 14px;
+}
+.facility-text > p {
+  margin-top: 22px;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 480px;
+}
+.facility-specs {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 36px;
+}
+.facility-specs .sp {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.facility-specs .sp .lb {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.facility-specs .sp .vl {
+  font-family: 'Newsreader', serif;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+
+/* Leadership */
+.lead { background: var(--paper); padding: 110px 0; }
+.lead-head { margin-bottom: 56px; max-width: 720px; }
+.lead-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.lead-card .ph {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: repeating-linear-gradient(135deg, #E8E4D9 0px, #E8E4D9 8px, #DFDBCC 8px, #DFDBCC 16px);
+  margin-bottom: 18px;
+  position: relative;
+}
+.lead-card .ph::after {
+  content: 'PORTRAIT';
+  position: absolute;
+  bottom: 10px; left: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.lead-card .nm { font-weight: 600; font-size: 16px; }
+.lead-card .rl { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+
+/* Certifications */
+.certs-section { padding: 110px 0; }
+.certs-head { margin-bottom: 56px; max-width: 720px; }
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.cert-card {
+  background: var(--white);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 180px;
+}
+.cert-card .cseal {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--red);
+  color: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Newsreader', serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+.cert-card h4 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+.cert-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width:960px) {
+  .story-grid, .numbers-grid, .numbers-band .head, .values-grid, .facility-grid, .lead-grid, .certs-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .lead-grid, .values-grid { grid-template-columns: 1fr 1fr; }
+  .timeline-list li { grid-template-columns: 80px 1fr; }
+  .timeline-list .de { grid-column: 1/-1; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left"><span>For qualified medical professionals</span></div>
+    <div class="topbar-right"><a href="#">EN</a><a href="#">TR</a><span class="pill">Distributors → 80+ countries</span></div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand"><img src="assets/boltera-logo.png" alt="Boltera"></a>
+    <nav><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-company.html" class="active">Our Company</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></nav>
+    <a href="contact.html" class="nav-cta">Contact Us
+      <svg class="arrow-icn" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs">Boltera <span>· Our Company</span></div>
+    <h1>A medical device company built around the surgeon's hand.</h1>
+    <p class="lede">We're a Canada-based manufacturer of single-use medical devices — making instruments that earn their place in the operating room, one case at a time.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section>
+  <div class="container story-grid">
+    <div>
+      <div class="eyebrow">Our story</div>
+      <h2>Engineering for the people who hold someone's life in their hands.</h2>
+    </div>
+    <div class="story-text">
+      <p>Boltera Inc. is dedicated to advancing healthcare through innovation, precision, and a steadfast commitment to quality. Founded by a team with over 32 years of expertise in the medical device industry, our company focuses on the design and manufacturing of high-tech disposable medical products. From stents and catheters to guide wires and balloons, we provide essential solutions that serve a wide range of medical specialties, including cardiology, radiology, neurology, anesthesiology, surgery, and urology.</p>
+      <p>Our goal is to empower healthcare professionals with reliable and innovative tools that improve patient outcomes and streamline medical procedures. With a planned portfolio of 40-45 state-of-the-art products, we aim to address the growing global demand for advanced medical devices while setting new standards in quality and performance.</p>
+      <p>At Boltera Inc., we take pride in contributing to the healthcare industry's progress while strengthening Canada’s position as a leader in medical technology. By combining decades of experience, cutting-edge technology, and a vision for the future, we strive to make a lasting impact on patient care and medical innovation worldwide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="container">
+    <div class="timeline-head">
+      <div class="eyebrow">Timeline</div>
+      <h2 class="section-title">
+</h2>
+    </div>
+    <ul class="timeline-list">
+      <li><div class="yr">2023</div><div class="ti">Established company</div><div class="de">Boltera Medical is founded to design and manufacture single-use precision instruments for clinicians.</div></li>
+      <li><div class="yr">2026</div><div class="ti">Acquired a property in Guelph, Ontario</div><div class="de">Secured the company's permanent home at 11 Massey Rd, Guelph — the foundation for in-house production.</div></li>
+      <li><div class="yr">2026</div><div class="ti">Built a cleanroom</div><div class="de">Commissioned a dedicated cleanroom on the Guelph site, bringing precision assembly and sterilization in-house.</div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+    <div class="values-head">
+      <div class="eyebrow">What we hold to</div>
+      <h2 class="section-title">Three principles that decide every meeting.</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="vn">/ 01</div>
+        <h3>Clinical truth comes first.</h3>
+        <p>Every device on our roadmap starts in an operating room — a real surgeon, real cases, real frustration. If we can't trace a feature back to that conversation, we don't build it.</p>
+      </div>
+      <div class="value-card">
+        <div class="vn">/ 02</div>
+        <h3>Tolerance is a moral choice.</h3>
+        <p>A 0.05 mm deviation on a coronary shaft is the difference between a clean case and a complication. We don't compete on cost-cutting that touches the geometry of what enters a patient.</p>
+      </div>
+      <div class="value-card">
+        <div class="vn">/ 03</div>
+        <h3>Distribution is a relationship.</h3>
+        <p>We pick fewer distributors than our competitors and stay close to the ones we have. Clinical training, on-site support, real responsiveness when a lot is questioned.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITY -->
+<section class="facility">
+  <div class="container facility-grid">
+    <div class="facility-vis">
+      <iframe
+        title="Boltera facility — 11 Massey Rd, Guelph, ON"
+        src="https://www.google.com/maps?q=11+Massey+Rd,+Guelph,+ON+N1H+7M6&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+        style="width:100%;height:100%;border:0;display:block;"></iframe>
+    </div>
+    <div class="facility-text">
+      <div class="eyebrow">The facility</div>
+      <h2>Guelph, Ontario — our home for precision manufacturing.</h2>
+      <p>Our facility at 11 Massey Rd, Guelph integrates precision assembly, sterilization, and packaging under one roof — purpose-built for the single-use medical devices Boltera ships to clinicians.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background: var(--ink); color: var(--white); padding: 80px 0; position:relative; overflow:hidden;">
+  <div class="container" style="display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center;position:relative;">
+    <div>
+      <div class="eyebrow">Work with us</div>
+      <h2 style="color:var(--white);font-size:clamp(30px,3.4vw,46px);line-height:1.1;margin-top:14px;">Distributor, hospital, or clinical partner — we'd like to talk.</h2>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end;">
+      <a href="contact.html" class="btn btn-primary">Get in touch
+        <svg class="arrow-icn" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" style="margin-top:0;">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-mark"><img src="assets/boltera-logo.png" alt="Boltera"></div>
+        <p class="footer-tag">Boltera Medical Devices — designing and manufacturing single-use precision instruments for clinicians worldwide.</p>
+      </div>
+      <div><h4>Navigate</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="our-company.html">Our company</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>Specialties</h4><ul>
+        <li><a href="products.html">Cardiology</a></li>
+        <li><a href="products.html">Cardiovascular Surgery</a></li>
+        <li><a href="products.html">Dialysis</a></li>
+        <li><a href="products.html">General Surgery</a></li>
+        <li><a href="products.html">Anaesthesiology, Radiology…</a></li>
+      </ul></div>
+      <div><h4>Reach us</h4><ul>
+        <li>+1-647-410-0249</li>
+        <li>info@boltera.ca</li>
+        <li>Guelph, Ontario, Canada</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Boltera Medical. All rights reserved.</div>
+      <div class="legal"><a href="#">Privacy</a><a href="#">Quality policy</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Products — Boltera Medical Devices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.products-hero {
+  background: var(--paper);
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--line);
+}
+.products-hero .crumbs {
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.products-hero .crumbs span { color: var(--red); }
+.products-hero h1 {
+  font-size: clamp(36px, 4.4vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.products-hero .head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+}
+.products-hero .help {
+  font-size: 13px;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.products-hero .help::before {
+  content: 'i';
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* Search bar */
+.search-bar {
+  background: var(--white);
+  border: 1px solid var(--line);
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 60px;
+  gap: 0;
+}
+.search-bar .field {
+  padding: 18px 24px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.search-bar .field:last-of-type { border-right: 0; }
+.search-bar .lbl {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.search-bar .field input,
+.search-bar .field select {
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 0;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+.search-bar .field.search { display: flex; flex-direction: row; align-items: center; gap: 12px; }
+.search-bar .field.search svg { color: var(--muted); flex-shrink: 0; }
+.search-bar .field.search > div { flex: 1; }
+.search-bar .field.search input { width: 100%; }
+.search-bar .submit {
+  background: var(--red);
+  color: var(--white);
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.search-bar .submit:hover { background: var(--red-deep); }
+
+/* Notice bar */
+.notice {
+  background: rgba(227,6,19,0.05);
+  border: 1px solid rgba(227,6,19,0.15);
+  border-left: 3px solid var(--red);
+  padding: 14px 22px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.notice svg { color: var(--red); flex-shrink: 0; }
+
+/* Layout: sidebar + main */
+.products-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 56px;
+  padding: 56px 0 0;
+}
+
+/* Sidebar */
+.filter-side h4 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.filter-side .filter-head {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 700; font-size: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+.filter-side .filter-head svg { color: var(--red); }
+.cat-list { list-style: none; padding: 0; margin: 0 0 32px; }
+.cat-list li {
+  border-bottom: 1px solid var(--line);
+}
+.cat-list li button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 14px 0;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.15s;
+}
+.cat-list li button:hover { color: var(--red); }
+.cat-list li.active button { color: var(--red); font-weight: 700; }
+.cat-list li.active::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 4px;
+  background: var(--red);
+  border-radius: 50%;
+  position: relative;
+  top: -1px;
+  margin-right: 10px;
+}
+.cat-list li button .ct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.sub-filter { margin-bottom: 32px; }
+.sub-filter ul { list-style: none; padding: 0; margin: 0; }
+.sub-filter li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.sub-filter li:hover { color: var(--red); }
+.sub-filter li .ct { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+.clear-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--white);
+  border: 1px solid var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.04em;
+}
+.clear-btn:hover { background: var(--ink); color: var(--white); }
+
+/* Main */
+.products-main h2#cat-title {
+  font-family: 'Newsreader', serif;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.cat-meta {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.main-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 32px;
+}
+.sort-box {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--muted);
+}
+.sort-box select {
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  background: var(--white);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* Category tile grid (when "all") */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.tile {
+  background: var(--white);
+  padding: 36px 28px;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 220px;
+  border: 0;
+  text-align: left;
+  font-family: inherit;
+}
+.tile:hover { background: var(--paper); }
+.tile .icn { color: var(--red); }
+.tile h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+.tile .meta {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--muted);
+  align-items: center;
+}
+.tile .arr {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.tile:hover .arr { background: var(--red); color: var(--white); border-color: var(--red); transform: translateX(3px); }
+
+/* Product card grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.product-card:hover {
+  border-color: var(--red);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.product-card .imgwrap {
+  aspect-ratio: 4/3;
+  background: repeating-linear-gradient(135deg, #F2F0EA 0px, #F2F0EA 8px, #ECE9E1 8px, #ECE9E1 16px);
+  position: relative;
+  overflow: hidden;
+}
+.product-card .tag {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.product-card .imgwrap::after {
+  content: 'PRODUCT SHOT';
+  position: absolute;
+  bottom: 12px; right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  background: rgba(251,250,247,0.92);
+  padding: 3px 7px;
+}
+.product-card .body {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-card h4 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+.product-card .desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.product-card .variants {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.product-card .variants .vchip {
+  font-size: 11px;
+  padding: 4px 9px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  border-radius: 999px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+.product-card .variants .vchip.more {
+  background: transparent;
+  color: var(--red);
+  font-weight: 600;
+}
+.product-card .row {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-items: center;
+}
+.product-card .row .view {
+  color: var(--red);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 48px 0 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+}
+.pagination .nums { display: flex; gap: 8px; }
+.pagination .nums button {
+  width: 36px; height: 36px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--ink-2);
+}
+.pagination .nums button.active { background: var(--red); color: var(--white); border-color: var(--red); }
+.pagination .pager-info { font-size: 13px; color: var(--muted); }
+
+@media (max-width: 960px) {
+  .products-layout { grid-template-columns: 1fr; }
+  .search-bar { grid-template-columns: 1fr; }
+  .search-bar .field { border-right: 0; border-bottom: 1px solid var(--line); }
+  .tiles-grid, .products-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left"><span>For qualified medical professionals</span></div>
+    <div class="topbar-right"><a href="#">EN</a><a href="#">TR</a><span class="pill">Distributors → 80+ countries</span></div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand"><img src="assets/boltera-logo.png" alt="Boltera"></a>
+    <nav><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-company.html">Our Company</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></nav>
+    <a href="contact.html" class="nav-cta">Contact Us
+      <svg class="arrow-icn" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO + SEARCH -->
+<section class="products-hero">
+  <div class="container">
+    <div class="crumbs">Boltera <span>· Products</span></div>
+    <div class="head-row">
+      <h1>Products</h1>
+      <div class="help">How to use the search</div>
+    </div>
+
+    <div class="search-bar">
+      <div class="field search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 12L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div>
+          <div class="lbl">Search</div>
+          <input type="text" placeholder="e.g. coronary guidewire, dialysis catheter…" id="search-input">
+        </div>
+      </div>
+      <div class="field">
+        <div class="lbl">Product category</div>
+        <select id="cat-select">
+          <option value="all">All categories</option>
+          <option value="cardiology">Cardiology</option>
+          <option value="cv-surgery">Cardiovascular Surgery</option>
+          <option value="dialysis">Dialysis</option>
+          <option value="general">General Surgery</option>
+          <option value="anaesthesiology">Anaesthesiology</option>
+          <option value="radiology">Radiology</option>
+          <option value="urology">Urology</option>
+          <option value="neuro">Neuro</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="lbl">Medical use</div>
+        <select><option>Choose</option><option>Diagnostic</option><option>Therapeutic</option><option>Interventional</option></select>
+      </div>
+      <div class="field">
+        <div class="lbl">Product group</div>
+        <select><option>Choose</option><option>Catheters</option><option>Guidewires</option><option>Introducers</option><option>Stents</option></select>
+      </div>
+      <button class="submit" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="notice">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.4"/><path d="M9 12V8M9 6V5.99" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Our products are intended only for use by qualified medical personnel.
+    </div>
+  </div>
+</section>
+
+<!-- LAYOUT -->
+<section>
+  <div class="container products-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="filter-side">
+      <div class="filter-head">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4H14M4 8H12M6 12H10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Filter
+      </div>
+
+      <h4>Category</h4>
+      <ul class="cat-list" id="cat-list">
+        <li data-cat="all" class="active"><button>All categories <span class="ct">(56)</span></button></li>
+        <li data-cat="cardiology"><button>Cardiology <span class="ct">(22)</span></button></li>
+        <li data-cat="cv-surgery"><button>Cardiovascular Surgery <span class="ct">(2)</span></button></li>
+        <li data-cat="dialysis"><button>Dialysis <span class="ct">(2)</span></button></li>
+        <li data-cat="general"><button>General Surgery <span class="ct">(2)</span></button></li>
+        <li data-cat="anaesthesiology"><button>Anaesthesiology <span class="ct">(2)</span></button></li>
+        <li data-cat="radiology"><button>Radiology <span class="ct">(8)</span></button></li>
+        <li data-cat="urology"><button>Urology <span class="ct">(5)</span></button></li>
+        <li data-cat="neuro"><button>Neuro <span class="ct">(13)</span></button></li>
+      </ul>
+
+      <div class="sub-filter">
+        <h4>Medical use</h4>
+        <ul>
+          <li>Coronary intervention <span class="ct">(15)</span></li>
+          <li>Peripheral intervention <span class="ct">(8)</span></li>
+          <li>Vascular access <span class="ct">(10)</span></li>
+          <li>Drainage <span class="ct">(6)</span></li>
+          <li>Neuro intervention <span class="ct">(7)</span></li>
+        </ul>
+      </div>
+
+      <div class="sub-filter">
+        <h4>Product group</h4>
+        <ul>
+          <li>Catheters &amp; balloons <span class="ct">(18)</span></li>
+          <li>Guidewires <span class="ct">(4)</span></li>
+          <li>Introducer sheaths <span class="ct">(2)</span></li>
+          <li>Stents <span class="ct">(4)</span></li>
+          <li>Kits &amp; accessories <span class="ct">(12)</span></li>
+        </ul>
+      </div>
+
+      <button class="clear-btn">Remove filters</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="products-main">
+      <div class="main-head">
+        <div>
+          <h2 id="cat-title">Select products category</h2>
+          <div class="cat-meta" id="cat-meta">8 specialties · 56 device lines in catalog</div>
+        </div>
+        <div class="sort-box">
+          Sorting
+          <select><option>A → Z</option><option>Newest first</option><option>Most viewed</option></select>
+        </div>
+      </div>
+
+      <!-- CATEGORY TILES (default view) -->
+      <div id="tiles-view">
+        <div class="tiles-grid">
+          <button class="tile" data-cat="cardiology">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 32C20 32 8 24 8 16C8 11 11 8 15 8C17.5 8 19 9.5 20 11C21 9.5 22.5 8 25 8C29 8 32 11 32 16C32 24 20 32 20 32Z"/><path d="M12 18 L16 18 L18 14 L22 22 L24 18 L28 18" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Cardiology</h3>
+            <div class="meta"><span>22 device lines</span><span class="arr">→</span></div>
+          </button>
+          <button class="tile" data-cat="cv-surgery">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="14" r="6"/><path d="M14 14C14 14 8 22 8 28M26 14C26 14 32 22 32 28M20 20V32M14 26H26" stroke-linecap="round"/></svg></div>
+            <h3>Cardiovascular Surgery</h3>
+            <div class="meta"><span>2 device lines</span><span class="arr">→</span></div>
+          </button>
+          <button class="tile" data-cat="dialysis">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="11"/><path d="M9 20H31M14 12C14 12 12 16 12 20C12 24 14 28 14 28M26 12C26 12 28 16 28 20C28 24 26 28 26 28" stroke-linecap="round"/></svg></div>
+            <h3>Dialysis</h3>
+            <div class="meta"><span>2 device lines</span><span class="arr">→</span></div>
+          </button>
+          <button class="tile" data-cat="general">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 30L26 14M26 14L24 10L30 4L36 10L30 16L26 14ZM10 30L6 34M14 26L18 30" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>General Surgery</h3>
+            <div class="meta"><span>2 device lines</span><span class="arr">→</span></div>
+          </button>
+          <button class="tile" data-cat="anaesthesiology">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 10V22C14 26 17 28 20 28C23 28 26 26 26 22V10M10 10H30M20 28V34" stroke-linecap="round"/></svg></div>
+            <h3>Anaesthesiology</h3>
+            <div class="meta"><span>2 device lines</span><span class="arr">→</span></div>
+          </button>
+          <button class="tile" data-cat="radiology">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="3"/><circle cx="20" cy="20" r="9"/><path d="M20 5V11M20 29V35M5 20H11M29 20H35" stroke-linecap="round"/></svg></div>
+            <h3>Radiology</h3>
+            <div class="meta"><span>8 device lines</span><span class="arr">→</span></div>
+          </button>
+          <button class="tile" data-cat="urology">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 12C12 16 12 22 14 26C16 30 18 32 20 32C22 32 24 30 26 26C28 22 28 16 26 12C24 8 22 8 20 8C18 8 16 8 14 12Z"/><path d="M20 16V24M16 20H24" stroke-linecap="round"/></svg></div>
+            <h3>Urology</h3>
+            <div class="meta"><span>5 device lines</span><span class="arr">→</span></div>
+          </button>
+          <button class="tile" data-cat="neuro">
+            <div class="icn"><svg width="44" height="44" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 10C10 12 8 16 8 20C8 26 12 30 16 30C18 30 20 28 20 26C20 24 18 24 18 22C18 20 22 20 22 16C22 12 18 8 14 10Z"/><circle cx="26" cy="22" r="6"/><path d="M30 22H32M26 18V16" stroke-linecap="round"/></svg></div>
+            <h3>Neuro</h3>
+            <div class="meta"><span>13 device lines</span><span class="arr">→</span></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT GRID (filtered view) -->
+      <div id="products-view" style="display:none;">
+        <div class="products-grid" id="products-grid"><!-- filled by JS --></div>
+        <div class="pagination">
+          <div class="pager-info" id="pager-info">Showing 1 of 1</div>
+          <div class="nums">
+            <button class="active">1</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<div style="height:120px;"></div>
+
+<!-- FOOTER -->
+<footer class="site-footer" style="margin-top:0;">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-mark"><img src="assets/boltera-logo.png" alt="Boltera"></div>
+        <p class="footer-tag">Boltera Medical Devices — designing and manufacturing single-use precision instruments for clinicians worldwide.</p>
+      </div>
+      <div><h4>Navigate</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="our-company.html">Our company</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>Specialties</h4><ul>
+        <li><a href="products.html">Cardiology</a></li>
+        <li><a href="products.html">Cardiovascular Surgery</a></li>
+        <li><a href="products.html">Dialysis</a></li>
+        <li><a href="products.html">General Surgery</a></li>
+        <li><a href="products.html">Anaesthesiology, Radiology…</a></li>
+      </ul></div>
+      <div><h4>Reach us</h4><ul>
+        <li>+1-647-410-0249</li>
+        <li>info@boltera.ca</li>
+        <li>Guelph, Ontario, Canada</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Boltera Medical. All rights reserved.</div>
+      <div class="legal"><a href="#">Privacy</a><a href="#">Quality policy</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const CATALOG = {
+  'cardiology': {
+    title: 'Cardiology',
+    desc: 'Coronary diagnostic, intervention, structural heart, and pacing devices for the cath lab.',
+    count: 22,
+    products: [
+      { name: 'TAVI', desc: 'Transcatheter Aortic Valve Implantation system for minimally invasive aortic valve replacement.', tag: 'Structural Heart' },
+      { name: 'Angiography Catheter', desc: 'Pre-shaped diagnostic catheters for selective coronary and peripheral angiography.', tag: 'Cardiology', variants: ['Straight Pigtail','Pigtail','Angled Pigtail','Multi-Purpose','Simmons','Mani','Headhunter','Vertebral','Amplatz','Newton','Cobra','Femoral Renal','Sones','Judkins Right','Judkins Left'] },
+      { name: 'Radial Angiography Catheter', desc: 'Dedicated diagnostic catheter optimized for transradial coronary access.', tag: 'Cardiology' },
+      { name: 'Guiding Catheter', desc: 'PTFE-lined guiding catheter family for coronary interventional procedures.', tag: 'Cardiology' },
+      { name: 'Drug Eluting Coronary Angioplasty Balloon Catheter', desc: 'Drug-coated coronary balloon for de novo and in-stent restenosis lesions.', tag: 'Cardiology' },
+      { name: 'Coronary Angioplasty Balloon Catheter', desc: 'PTCA balloon catheter platform for the full spectrum of coronary intervention.', tag: 'Cardiology', variants: ['Semi-Compliance','Non-Compliance','Chronic Total Occlusion','Cutting','Boltera Type'] },
+      { name: 'PTCA Guide Wire', desc: '0.014″ coronary guidewire family for routine PCI and complex anatomy.', tag: 'Cardiology' },
+      { name: 'Valvuloplasty Balloon', desc: 'High-volume non-compliant balloon for aortic and mitral valvuloplasty.', tag: 'Cardiology' },
+      { name: 'Introducer Sheath', desc: 'Hydrophilic-coated vascular access sheath family for diagnostic and interventional procedures.', tag: 'Cardiology', variants: ['Femoral','Large Size','Radial','Long','Mullan','Peel Away','Anesthesiologic'] },
+      { name: 'Everolimus Eluting Coronary Stent', desc: 'Cobalt-chromium drug-eluting stent platform with everolimus elution.', tag: 'Cardiology' },
+      { name: 'Temporary Pacing Lead', desc: 'Bipolar transvenous pacing lead for short-term right ventricular pacing.', tag: 'Cardiology' },
+      { name: 'Temporary Pacing Lead with Balloon', desc: 'Flow-directed balloon-tipped pacing lead for emergent bedside placement.', tag: 'Cardiology' },
+      { name: 'Hemostatic PTCA Y Connector', desc: 'Rotating hemostatic valve adapter for guidewire and balloon manipulation during PTCA.', tag: 'Cardiology', variants: ['Screw Type','Push Pull Type','Push Pull With Connecting Type'] },
+      { name: 'Hemostatic PTCA Y Connector Kit', desc: 'Complete Y connector kit with torquer, introducer needle, and insertion accessories.', tag: 'Cardiology' },
+      { name: 'Manifolds', desc: 'Pressure monitoring and contrast control manifolds for cath lab procedures.', tag: 'Cardiology', variants: ['Two-way Manifold','Three-way Manifold'] },
+      { name: 'Manifold Kit', desc: 'Pre-assembled manifold set with high-pressure tubing and stopcocks.', tag: 'Cardiology' },
+      { name: 'Teflon Coated Guide Wire', desc: 'PTFE-coated stainless guidewire for diagnostic and exchange procedures.', tag: 'Cardiology' },
+      { name: 'Hydrophilic Coated Guide Wire', desc: 'Hydrophilic-polymer coated guidewire designed for tortuous anatomy.', tag: 'Cardiology' },
+      { name: 'Angiographic Needle', desc: 'Beveled-tip vascular access needle for percutaneous arterial puncture.', tag: 'Cardiology' },
+      { name: 'Coronary Control Syringe', desc: 'High-pressure inflation device with calibrated gauge for PTCA balloon control.', tag: 'Cardiology' },
+      { name: 'Guiding Needle', desc: 'Hub-locking introducer needle for guidewire introduction.', tag: 'Cardiology' },
+      { name: 'High Pressure Connecting Tube', desc: 'Sterile high-pressure tubing rated for contrast injection systems.', tag: 'Cardiology' },
+    ],
+  },
+  'cv-surgery': {
+    title: 'Cardiovascular Surgery',
+    desc: 'Mechanical circulatory support and valve replacement for the cardiac surgical theatre.',
+    count: 2,
+    products: [
+      { name: 'Intra-Aortic Balloon Catheter Kit (IABP)', desc: 'Counterpulsation balloon kit for cardiac support in critical haemodynamic states.', tag: 'CV Surgery' },
+      { name: 'Mechanical Heart Valve', desc: 'Bileaflet pyrolytic-carbon mechanical heart valve prosthesis for aortic and mitral replacement.', tag: 'CV Surgery' },
+    ],
+  },
+  'dialysis': {
+    title: 'Dialysis',
+    desc: 'Vascular access catheters for short- and long-term hemodialysis.',
+    count: 2,
+    products: [
+      { name: 'Hemodialysis Catheter Kit', desc: 'Dual-lumen non-tunneled catheter kit for acute hemodialysis access.', tag: 'Dialysis' },
+      { name: 'Long Term Hemodialysis Catheter Kit', desc: 'Tunneled cuffed catheter kit with split-tip design for chronic dialysis access.', tag: 'Dialysis' },
+    ],
+  },
+  'general': {
+    title: 'General Surgery',
+    desc: 'Embolectomy and drainage devices for the general surgical suite.',
+    count: 2,
+    products: [
+      { name: 'Embolectomy Catheter', desc: 'Balloon-tip catheter for thrombo-embolectomy of peripheral arteries.', tag: 'General', variants: ['Single Lumen','Double Lumen','Guidewire Type'] },
+      { name: 'Drainage Catheter Kit', desc: 'Locking pigtail drainage catheter kit for percutaneous fluid evacuation.', tag: 'General', variants: ['One Step Type','Two Step Type'] },
+    ],
+  },
+  'anaesthesiology': {
+    title: 'Anaesthesiology',
+    desc: 'Central venous access for anaesthesia and intensive care.',
+    count: 2,
+    products: [
+      { name: 'Central Venous Catheter', desc: 'Polyurethane multi-lumen CVC for medication delivery and CVP monitoring.', tag: 'Anaesthesiology' },
+      { name: 'Central Venous Catheter Kit', desc: 'Full insertion kit with introducer needle, guidewire, dilator, and securing accessories.', tag: 'Anaesthesiology' },
+    ],
+  },
+  'radiology': {
+    title: 'Radiology',
+    desc: 'Peripheral interventional radiology devices for the endovascular suite.',
+    count: 8,
+    products: [
+      { name: 'Drug Eluting Peripheral Angioplasty Balloon Catheter PTA', desc: 'Drug-coated peripheral balloon for SFA and below-the-knee lesions.', tag: 'Radiology' },
+      { name: 'Peripheral Angioplasty Balloon Catheter PTA', desc: 'Standard peripheral balloon catheter for endovascular intervention.', tag: 'Radiology' },
+      { name: 'Support Catheter', desc: 'Reinforced shaft catheter for crossing complex peripheral lesions.', tag: 'Radiology' },
+      { name: 'Micro Catheter Peripheral', desc: 'Low-profile microcatheter for selective and superselective peripheral access.', tag: 'Radiology' },
+      { name: 'Self-Expanding Stent', desc: 'Nitinol self-expanding stent for SFA and iliac applications.', tag: 'Radiology' },
+      { name: 'Balloon Expanding Stent', desc: 'Cobalt-chromium balloon-expandable peripheral stent.', tag: 'Radiology' },
+      { name: 'Introducer Sheath Long', desc: 'Long-length hydrophilic introducer sheath for crossover and antegrade access.', tag: 'Radiology' },
+      { name: 'Dilator', desc: 'Tapered polymer dilator for sequential vascular access dilation.', tag: 'Radiology' },
+    ],
+  },
+  'urology': {
+    title: 'Urology',
+    desc: 'Drainage and stenting devices for the urology and endourology suite.',
+    count: 5,
+    products: [
+      { name: 'Ureteral Catheter', desc: 'Open-tip ureteral catheter for retrograde pyelography and ureter access.', tag: 'Urology' },
+      { name: 'Double J Catheter Kit', desc: 'Polyurethane double-J stent kit with pusher, guidewire, and grasping suture.', tag: 'Urology' },
+      { name: 'Nephrostomy Kit', desc: 'Trocar nephrostomy drainage kit with locking pigtail and connecting tubing.', tag: 'Urology' },
+      { name: 'Nephrostomy Kit Malecot Type', desc: 'Malecot-tip nephrostomy drainage kit for sustained renal collecting system drainage.', tag: 'Urology' },
+      { name: 'Cystostomy Catheter Kit', desc: 'Suprapubic cystostomy kit with trocar set and balloon retention catheter.', tag: 'Urology' },
+    ],
+  },
+  'neuro': {
+    title: 'Neuro',
+    desc: 'Neurovascular access, embolization, thrombectomy, and stenting for the neuro suite.',
+    count: 13,
+    products: [
+      { name: 'Embolic Coil System', desc: 'Detachable platinum embolization coil system for cerebral aneurysm treatment.', tag: 'Neuro' },
+      { name: 'Flow Diverter', desc: 'Braided flow-diverting stent for endovascular reconstruction of intracranial aneurysms.', tag: 'Neuro' },
+      { name: 'Occlusion Balloon Catheter', desc: 'Compliant balloon catheter for temporary proximal vessel occlusion and flow arrest.', tag: 'Neuro' },
+      { name: 'Embolic Protection Device', desc: 'Distal filter device for embolic protection during carotid and neurovascular intervention.', tag: 'Neuro' },
+      { name: 'Carotid Stent', desc: 'Nitinol self-expanding stent platform for extracranial carotid artery stenting.', tag: 'Neuro' },
+      { name: 'Thrombectomy Device', desc: 'Stent-retriever mechanical thrombectomy device for large-vessel ischemic stroke.', tag: 'Neuro' },
+      { name: 'Thrombus Aspiration Catheter', desc: 'Large-bore aspiration catheter for direct clot retrieval in acute ischemic stroke.', tag: 'Neuro' },
+      { name: 'Intracranial Balloon Dilatation Catheter', desc: 'Compliant neuro balloon for intracranial angioplasty and temporary occlusion.', tag: 'Neuro' },
+      { name: 'Micro Catheter', desc: 'Low-profile braided microcatheter for distal neurovascular access and delivery.', tag: 'Neuro' },
+      { name: 'Distal Access Catheter', desc: 'Large-bore distal access catheter providing support for thrombectomy and embolization.', tag: 'Neuro' },
+      { name: 'Neurovascular Guide Wire', desc: '0.014″ steerable neurovascular guidewire for cerebral and neurovascular navigation.', tag: 'Neuro' },
+      { name: 'Delivery Catheter', desc: 'Dedicated delivery catheter for embolic device deployment in neurovascular procedures.', tag: 'Neuro' },
+      { name: 'Venous Stent', desc: 'Nitinol self-expanding stent designed for venous outflow obstruction and CCSVI applications.', tag: 'Neuro' },
+    ],
+  },
+};
+const TOTAL_DEVICES = Object.values(CATALOG).reduce((s,c)=>s+c.count,0);
+
+const tilesView = document.getElementById('tiles-view');
+const productsView = document.getElementById('products-view');
+const grid = document.getElementById('products-grid');
+const title = document.getElementById('cat-title');
+const meta = document.getElementById('cat-meta');
+const pager = document.getElementById('pager-info');
+
+function renderVariants(variants) {
+  if (!variants || !variants.length) return '';
+  const max = 5;
+  const shown = variants.slice(0, max).map(v => `<span class="vchip">${v}</span>`).join('');
+  const more = variants.length > max
+    ? `<span class="vchip more">+${variants.length - max} more</span>`
+    : '';
+  return `<div class="variants">${shown}${more}</div>`;
+}
+
+function showCategory(catKey) {
+  if (catKey === 'all') {
+    tilesView.style.display = 'block';
+    productsView.style.display = 'none';
+    title.textContent = 'Select products category';
+    meta.textContent = `8 specialties · ${TOTAL_DEVICES} device lines in catalog`;
+    return;
+  }
+  const data = CATALOG[catKey];
+  if (!data) return;
+  tilesView.style.display = 'none';
+  productsView.style.display = 'block';
+  title.textContent = data.title;
+  const lineWord = data.count === 1 ? 'device line' : 'device lines';
+  meta.textContent = `${data.count} ${lineWord} · ${data.desc}`;
+  pager.textContent = `Showing 1–${data.products.length} of ${data.count}`;
+  grid.innerHTML = data.products.map(p => `
+    <div class="product-card">
+      <div class="imgwrap">
+        <span class="tag">${p.tag}</span>
+      </div>
+      <div class="body">
+        <h4>${p.name}</h4>
+        <p class="desc">${p.desc}</p>
+        ${renderVariants(p.variants)}
+        <div class="row">
+          <span>Sterile · Single use</span>
+          <span class="view">View specs →</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Sidebar handlers
+document.querySelectorAll('#cat-list li').forEach(li => {
+  li.addEventListener('click', () => {
+    document.querySelectorAll('#cat-list li').forEach(x => x.classList.remove('active'));
+    li.classList.add('active');
+    const cat = li.dataset.cat;
+    document.getElementById('cat-select').value = cat;
+    showCategory(cat);
+  });
+});
+
+// Tile handlers
+document.querySelectorAll('.tile').forEach(t => {
+  t.addEventListener('click', () => {
+    const cat = t.dataset.cat;
+    document.querySelectorAll('#cat-list li').forEach(x => x.classList.toggle('active', x.dataset.cat === cat));
+    document.getElementById('cat-select').value = cat;
+    showCategory(cat);
+    window.scrollTo({ top: document.querySelector('.products-layout').offsetTop - 80, behavior: 'smooth' });
+  });
+});
+
+// Top dropdown handler
+document.getElementById('cat-select').addEventListener('change', (e) => {
+  const cat = e.target.value;
+  document.querySelectorAll('#cat-list li').forEach(x => x.classList.toggle('active', x.dataset.cat === cat));
+  showCategory(cat);
+});
+
+// Clear
+document.querySelector('.clear-btn').addEventListener('click', () => {
+  document.querySelectorAll('#cat-list li').forEach(x => x.classList.toggle('active', x.dataset.cat === 'all'));
+  document.getElementById('cat-select').value = 'all';
+  showCategory('all');
+});
+</script>
+<script src="translate.js"></script>
+</body>
+</html>

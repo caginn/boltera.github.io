@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Boltera Medical Devices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.contact-section { padding: 64px 0 0; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Contact info */
+.contact-info { position: sticky; top: 100px; }
+.contact-info h2 {
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.05;
+  margin-top: 14px;
+}
+.contact-info > p {
+  margin-top: 18px;
+  font-size: 16.5px;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+.info-blocks { margin-top: 40px; }
+.info-block {
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 18px;
+}
+.info-block:last-child { border-bottom: 1px solid var(--line); }
+.info-block .ic {
+  color: var(--red);
+  width: 28px; height: 28px;
+}
+.info-block .lb {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.info-block .vl {
+  font-family: 'Newsreader', serif;
+  font-size: 22px;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.info-block .sub {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Form */
+.form-wrap {
+  background: var(--paper);
+  padding: 48px 48px 56px;
+  border: 1px solid var(--line);
+}
+.form-wrap .head {
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.form-wrap .head .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.form-wrap .head h3 {
+  font-family: 'Newsreader', serif;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+.tab-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 32px;
+  background: var(--white);
+  padding: 4px;
+  border: 1px solid var(--line);
+}
+.tab-row button {
+  flex: 1;
+  padding: 12px 14px;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.18s;
+  letter-spacing: 0.01em;
+}
+.tab-row button.active {
+  background: var(--red);
+  color: var(--white);
+}
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 22px;
+}
+.field-grid .full { grid-column: 1 / -1; }
+.field-grid label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+.field-grid input,
+.field-grid select,
+.field-grid textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  font-family: inherit;
+  font-size: 14.5px;
+  color: var(--ink);
+  outline: none;
+  transition: border 0.15s;
+  font-weight: 500;
+}
+.field-grid input:focus,
+.field-grid select:focus,
+.field-grid textarea:focus {
+  border-color: var(--red);
+}
+.field-grid textarea { min-height: 130px; resize: vertical; font-family: inherit; }
+.field-grid select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M3 4.5L6 8L9 4.5' stroke='%236B7077' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.consent input { margin-top: 3px; accent-color: var(--red); }
+.consent a { color: var(--red); text-decoration: underline; }
+.submit-row { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.submit-row .response {
+  font-size: 12.5px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+.success-banner {
+  background: rgba(20, 22, 26, 0.04);
+  border-left: 3px solid var(--red);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  font-size: 14px;
+  color: var(--ink-2);
+  display: none;
+}
+.success-banner.show { display: block; }
+
+/* Office band */
+.offices {
+  background: var(--ink);
+  color: var(--white);
+  padding: 96px 0;
+  margin-top: 110px;
+}
+.offices .head { margin-bottom: 56px; max-width: 720px; }
+.offices h2 { color: var(--white); font-size: clamp(30px, 3.4vw, 46px); line-height: 1.06; }
+.offices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.office-card {
+  background: var(--ink);
+  padding: 36px 32px;
+}
+.office-card .city {
+  font-family: 'Newsreader', serif;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.office-card .role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.office-card .addr {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 14px;
+}
+.office-card .ph {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.55);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Map */
+.map-strip {
+  height: 420px;
+  position: relative;
+  background: var(--paper);
+  overflow: hidden;
+}
+.map-strip iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (max-width:960px) {
+  .contact-grid, .offices-grid, .field-grid, .footer-grid { grid-template-columns: 1fr; }
+  .contact-info { position: static; }
+  .form-wrap { padding: 28px 22px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left"><span>For qualified medical professionals</span></div>
+    <div class="topbar-right"><a href="#">EN</a><a href="#">TR</a><span class="pill">Distributors → 80+ countries</span></div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand"><img src="assets/boltera-logo.png" alt="Boltera"></a>
+    <nav><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-company.html">Our Company</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul></nav>
+    <a href="contact.html" class="nav-cta">Contact Us
+      <svg class="arrow-icn" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs">Boltera <span>· Contact</span></div>
+    <h1>Reach the people who actually answer.</h1>
+    <p class="lede">Sample requests, distributor inquiries, regulatory questions, or hospital-side technical support — write to the team that handles it directly. Most messages get a reply within one business day.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="container contact-grid">
+
+    <!-- LEFT: info -->
+    <div class="contact-info">
+      <div class="eyebrow">Direct lines</div>
+      <h2>Talk to us about your case schedule, your tender, or your tray.</h2>
+      <p>Our clinical liaison and commercial teams sit in İstanbul and respond in EN / TR / DE. For urgent quality questions on a specific lot, please use the dedicated regulatory line.</p>
+
+      <div class="info-blocks">
+        <div class="info-block">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6L11 12L19 6M3 5H19V17H3V5Z" stroke-linejoin="round"/></svg></div>
+          <div>
+            <div class="lb">General inquiries</div>
+            <div class="vl">info@boltera.ca</div>
+            <div class="sub">Distributors, hospitals, press</div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4H8L10 9L7.5 11C9 14 11 16 14 17.5L16 15L21 17V20C21 20 17 20 13 18C9 16 6 13 4 9C2 5 2 1 2 1H5L5 4Z" stroke-linejoin="round"/></svg></div>
+          <div>
+            <div class="lb">Phone</div>
+            <div class="vl">+1-647-410-0249</div>
+            <div class="sub">Mon–Fri · 09:00–18:00</div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 19C11 19 4 13 4 8C4 4.5 7 2 11 2C15 2 18 4.5 18 8C18 13 11 19 11 19Z"/><circle cx="11" cy="8" r="2.5"/></svg></div>
+          <div>
+            <div class="lb">Headquarters</div>
+            <div class="vl">Guelph, ON, Canada</div>
+            <div class="sub">Manufacturing facility in Guelph, ,ON, Canada</div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M11 6V11L14 13"/></svg></div>
+          <div>
+            <div class="lb">Quality & regulatory</div>
+            <div class="vl">info@boltera.ca</div>
+            <div class="sub">Lot complaints, vigilance reports</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="form-wrap">
+      <div class="head">
+        <div class="lbl">/ Send us a message</div>
+        <h3>Tell us what you need — and who you need it for.</h3>
+      </div>
+
+      <div class="success-banner" id="success-banner">
+        Thank you. Your message is on its way to the right desk — we'll respond within one business day.
+      </div>
+
+      <form id="contact-form" action="https://formspree.io/f/mykvwdrz" method="POST">
+        <input type="hidden" name="_subject" value="New inquiry from boltera.ca">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
+        <div class="field-grid">
+          <div>
+            <label>First name</label>
+            <input type="text" name="first_name" required placeholder="First name">
+          </div>
+          <div>
+            <label>Last name</label>
+            <input type="text" name="last_name" required placeholder="Last name">
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" required placeholder="you@hospital.org">
+          </div>
+          <div>
+            <label>Phone (optional)</label>
+            <input type="tel" name="phone" placeholder="+1 …">
+          </div>
+          <div class="full">
+            <label>Organization</label>
+            <input type="text" name="organization" required placeholder="Hospital, distributor, or company name">
+          </div>
+          <div>
+            <label>Country</label>
+            <select name="country" required>
+              <option value="">Select country</option>
+              <option>Canada</option><option>United States</option><option>United Kingdom</option>
+              <option>Germany</option><option>France</option><option>Italy</option>
+              <option>Spain</option><option>Poland</option><option>Türkiye</option>
+              <option>United Arab Emirates</option><option>Saudi Arabia</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label>I'm interested in</label>
+            <select name="interest" required>
+              <option value="">Choose…</option>
+              <option>Cardiology</option>
+              <option>Cardiovascular Surgery</option>
+              <option>Dialysis</option>
+              <option>General Surgery</option>
+              <option>Anaesthesiology</option>
+              <option>Radiology</option>
+              <option>Urology</option>
+              <option>Neurovascular</option>
+              <option>Multiple specialties</option>
+            </select>
+          </div>
+          <div class="full">
+            <label>Your message</label>
+            <textarea name="message" required placeholder="Briefly describe what you're looking for — e.g. a sample kit, distributor terms, regulatory documentation, or a specific REF."></textarea>
+          </div>
+        </div>
+
+        <div class="consent">
+          <input type="checkbox" id="consent" name="consent" value="yes" required>
+          <label for="consent" style="margin:0;font-size:13px;letter-spacing:0;text-transform:none;color:var(--muted);font-weight:500;">
+            I confirm I am a qualified medical professional, distributor, or authorized representative, and I agree to Boltera's <a href="#">privacy policy</a> for handling this inquiry.
+          </label>
+        </div>
+
+        <div class="submit-row">
+          <div class="response">Avg. response time · &lt; 1 business day</div>
+          <button type="submit" class="btn btn-primary">Send message
+            <svg class="arrow-icn" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- OFFICES -->
+<section class="offices">
+  <div class="container">
+    <div class="head">
+      <div class="eyebrow" style="color:var(--red);">Where we are</div>
+      <h2>11 Massey Rd Guelph, ON N1H 7M6</h2>
+    </div>
+    <div class="offices-grid">
+      <div class="office-card">
+        <div class="role">Headquarters & manufacturing</div>
+        <div class="city">Guelph</div>
+        <p class="addr">11 Massey Rd<br>Guelph, ON N1H 7M6<br>Canada</p>
+        <div class="ph">+1-647-410-0249</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-strip">
+  <iframe
+    title="Boltera — 11 Massey Rd, Guelph, ON N1H 7M6"
+    src="https://www.google.com/maps?q=11+Massey+Rd,+Guelph,+ON+N1H+7M6&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen></iframe>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer" style="margin-top:0;">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-mark"><img src="assets/boltera-logo.png" alt="Boltera"></div>
+        <p class="footer-tag">Boltera Medical Devices — designing and manufacturing single-use precision instruments for clinicians worldwide.</p>
+      </div>
+      <div><h4>Navigate</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="our-company.html">Our company</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>Specialties</h4><ul>
+        <li><a href="products.html">Cardiology</a></li>
+        <li><a href="products.html">Cardiovascular Surgery</a></li>
+        <li><a href="products.html">Dialysis</a></li>
+        <li><a href="products.html">General Surgery</a></li>
+        <li><a href="products.html">Anaesthesiology, Radiology…</a></li>
+      </ul></div>
+      <div><h4>Reach us</h4><ul>
+        <li>+1-647-410-0249</li>
+        <li>info@boltera.ca</li>
+        <li>Guelph, Ontario, Canada</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Boltera Medical. All rights reserved.</div>
+      <div class="legal"><a href="#">Privacy</a><a href="#">Quality policy</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Form
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const banner = document.getElementById('success-banner');
+  const originalBtnHTML = submitBtn.innerHTML;
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Sending…';
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      banner.textContent = "Thank you. Your message is on its way to the right desk — we'll respond within one business day.";
+      banner.style.background = '';
+      banner.classList.add('show');
+      form.reset();
+      window.scrollTo({ top: document.querySelector('.form-wrap').offsetTop - 100, behavior: 'smooth' });
+    } else {
+      const data = await response.json().catch(() => ({}));
+      const errMsg = (data.errors && data.errors.map(x => x.message).join(', ')) || 'Something went wrong. Please try again or email info@boltera.ca directly.';
+      banner.textContent = errMsg;
+      banner.style.background = '#fdecea';
+      banner.classList.add('show');
+    }
+  } catch (err) {
+    banner.textContent = 'Network error. Please try again or email info@boltera.ca directly.';
+    banner.style.background = '#fdecea';
+    banner.classList.add('show');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalBtnHTML;
+  }
+});
+</script>
+<script src="translate.js"></script>
+</body>
+</html>
