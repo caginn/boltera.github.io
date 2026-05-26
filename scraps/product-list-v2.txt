@@ -1,0 +1,107 @@
+P: CARDIOLOGY
+P: TAVI (Transcatheter Aortic Valve Implantation)
+P: Angiography Catheters
+P: Straight Pigtail
+P: Pigtail
+P: Angled Pigtail
+P: Multi-Purpose
+P: Simmons
+P: Mani
+P: Headhunter
+P: Vertebral
+P: Amplatz
+P: Newton
+P: Cobra
+P: Femoral Renal
+P: Sones
+P: Judkins Right
+P: Judkins Left
+P: Radial Angiography Catheter
+P: Guiding Catheter
+P: Drug Eluting Coranary Anjioplasty Ballon Catheter
+P: Coranary Anjioplasty Ballon Catheter
+P: Semi-Compliance Type
+P: Non-Compliance Type
+P: Chronic Total Occlusion Type
+P: Cutting Type
+P: Boltera Type
+P: PTCA Guide Wire
+P: Valvuloplasty Ballonn
+P: Introducer Sheath Femoral
+P: Introducer Sheath Large Size
+P: Introducer Sheath Radial
+P: Introducer Sheath Long 
+P: Introducer Sheath Mullan 
+P: Introducer Sheath Peel Away
+P: Introducer Sheath Anesthesiologic
+P: Evorilimus Eluting Coronary Stent
+P: Temporary Pacing Lead
+P: Temporary Pacing Lead with Balloon
+P: Hemostatic PTCA Y Connector
+P: Screw Type
+P: Push Pull Type
+P: Push Pull With Connecting Type
+P: Hemostatic PTCA Y Connector Kit
+P: Manifolds
+P: Two-way Manifold 
+P: Three-way Manifold
+P: Manifold Kit
+P: Teflon Coated Guide Wire
+P: Hydrophilic Coated Guide Wire
+P: Angiographic Needle
+P: Coronary Control Syringe
+P: Guiding Needle
+P: High Pressure Connecting Tube
+P: 
+P: CARDIOVASCULAR SURGERY
+P: Intra-Aortic Ballon Catheter Kit (IABP)
+P: Mechanical Heart Valve
+P: 
+P: DIALYSIS
+P: Hemodialysis Catheter Kit 
+P: <w:tab w:val="left" w:pos="6075"/></w:tabs><w:spacing w:after="0" w:line="240" w:lineRule="auto"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/></w:rPr></w:pPr><w:r w:rsidRPr="00A51CA5"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/></w:rPr><w:t>Long Term Hemodialysis Catheter Kit
+P: 
+P: GENERAL SURGERY
+P: Embolectomy Catheter 
+P: Single Lumen
+P: Double Lumen
+P: Guidewire Type
+P: Drainage Catheter Kit
+P: One step Type
+P: Two Step Type
+P: 
+P: ANAESTHESIOLOGY
+P: Central Venous Catheter
+P: Central Venous Catheter Kit
+P: 
+P: RADIOOLOGY
+P: Drug Eluting Peripheral Angioplasty Balloon Catheter PTA
+P: Peripheral Angioplasty Balloon Catheter PTA
+P: Support Catheter
+P: Micro Catheter Peripheral
+P: Self-Expanding Stent
+P: Balloon Expanding Stent
+P: Introducer Sheath Long
+P: Dilator
+P: 
+P: UROLOGY
+P: Ureteral Catheter 
+P: Double J Catheter Kit 
+P: Nephrostomy Kit, 
+P: Nephrostomy Kit Malecot Type
+P: Cystostomy Catheter Kit
+P: 
+P: NEURO
+P: Embolic Coil System
+P: Flow Diverter
+P: Occlusion Balloon Catheter
+P: Embolic Protection Device
+P: Carotid Stent
+P: Thrombectomy Device
+P: Thrombus Aspiriration Catheter
+P: Intracranial Ballon Dilatation Catheter
+P: Micro Catheter
+P: Distal Access Catheter
+P: Neurovascular Guide Wire
+P: Delivery Catheter
+P: Venous stent

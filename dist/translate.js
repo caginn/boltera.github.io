@@ -89,59 +89,6 @@
         setLang(label);
       });
     });
-
-    initMobileNav();
-  }
-
-  function initMobileNav() {
-    var nav = document.querySelector('.site-header .nav');
-    if (!nav) return;
-    var links = nav.querySelector('.nav-links');
-    if (!links || nav.querySelector('.menu-toggle')) return;
-
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'menu-toggle';
-    btn.setAttribute('aria-label', 'Toggle menu');
-    btn.setAttribute('aria-expanded', 'false');
-    btn.innerHTML =
-      '<svg class="ic-open" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6H19M3 11H19M3 16H19"/></svg>' +
-      '<svg class="ic-close" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5L17 17M17 5L5 17"/></svg>';
-
-    var backdrop = document.createElement('div');
-    backdrop.className = 'nav-backdrop';
-
-    nav.appendChild(btn);
-    document.body.appendChild(backdrop);
-
-    function close() {
-      links.classList.remove('is-open');
-      btn.classList.remove('is-open');
-      backdrop.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-    function open() {
-      links.classList.add('is-open');
-      btn.classList.add('is-open');
-      backdrop.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-
-    btn.addEventListener('click', function () {
-      if (links.classList.contains('is-open')) close(); else open();
-    });
-    backdrop.addEventListener('click', close);
-    links.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', close);
-    });
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 720) close();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') close();
-    });
   }
 
   if (document.readyState === 'loading') {
